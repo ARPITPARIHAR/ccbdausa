@@ -118,7 +118,7 @@ class CategoryController extends Controller
         $subcategories = SubCategory::where('category_id', $id)->get();
 
         // Return a view with the category and its subcategories
-        return view('backend.categories.subcategoriesedit', compact('category', 'subcategories'));
+        return view('backend.categories.subcategories', compact('category', 'subcategories'));
     }
 
     public function storeSubcategory(Request $request, $categoryId)
@@ -148,13 +148,14 @@ class CategoryController extends Controller
 
 
 
-    public function editsubcategory($categoryId)
+    public function editsubcategory($categoryId, $subcategoryId)
     {
-        $category = Category::findOrFail($categoryId);
-        // $subcategory = SubCategory::findOrFail($subcategoryId);
+        $category = Category::findOrFail(decrypt($categoryId));
+        $subcategory = SubCategory::findOrFail(decrypt($subcategoryId));
 
         // Return the view with the category and subcategory data
-        return view('backend.categories.subcategoriesedit', compact('category' ));
+        return view('backend.categories.subcategoriesedit', compact('category', 'subcategory'));
+
     }
 
 
@@ -177,19 +178,19 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.subcategories', $categoryId)->with('success', 'Subcategory updated successfully');
     }
-
     public function destroySubcategory($categoryId, $subcategoryId)
     {
-        // Find the category and subcategory
-        $category = Category::findOrFail($categoryId);
-        $subcategory = SubCategory::findOrFail($subcategoryId);
+        // Decrypt the categoryId and subcategoryId
+        $category = Category::findOrFail(decrypt($categoryId));
+        $subcategory = SubCategory::findOrFail(decrypt($subcategoryId));
 
         // Delete the subcategory
         $subcategory->delete();
 
-        // Redirect back with a success message
-        return redirect()->route('categories.subcategories.index', ['category' => $category->id])
+        // Redirect with success message
+        return redirect()->route('categories.subcategories', ['category' => $category->id])
                          ->with('success', 'Subcategory deleted successfully');
     }
 
+  
 }

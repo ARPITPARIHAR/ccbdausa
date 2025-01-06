@@ -83,14 +83,15 @@
                                 <td><a href="{{ $subcategory->page_link }}" target="_blank">{{ $subcategory->page_link }}</a></td> <!-- Display the page link -->
                                 <td>{{ $subcategory->active ? __('Active') : __('Inactive') }}</td>
                                 <td>
-                                    <a href="{{ route('categories.subcategories.edit', ['category' => $category->id, 'subcategory' => $subcategory->id]) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('categories.subcategories.edit', ['category' => encrypt($category->id), 'subcategory' => encrypt($subcategory->id)]) }}" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('categories.subcategories.destroy', ['category' => $category->id, 'subcategory' => $subcategory->id]) }}"
-                                        class="btn btn-danger"
-                                        onclick="return confirm('Are you sure you want to delete this subcategory?')">
-                                        Delete
+
+
+                                    <a href="{{ route('categories.subcategories.destroy', ['category' => encrypt($category->id), 'subcategory' => encrypt($subcategory->id)]) }}"
+                                        class="btn  btn-danger">{{ __('Delete') }}</a>
                                      </a>
+
 
                                 </td>
                             </tr>

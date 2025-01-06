@@ -32,10 +32,9 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string',
-            'brief_description' => 'nullable|string',
+
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'hyperlink' => 'nullable|url', // Validate the hyperlink
+
         ]);
 
         $slider = new Slider;
@@ -45,9 +44,7 @@ class SliderController extends Controller
             $filePath = $request->file('image')->storeAs('uploads/sliders', $fileName, 'public');
             $slider->thumbnail_img = '/public/storage/' . $filePath; // Fixed path
         }
-        $slider->title = $request->title;
-        $slider->brief_description = $request->brief_description;
-        $slider->hyperlink = $request->input('hyperlink'); // Save the hyperlink
+
 
         $slider->save();
         Artisan::call('cache:clear');
@@ -70,9 +67,8 @@ class SliderController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            'brief_description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'hyperlink' => 'nullable|url', // Validate the hyperlink
+            // Validate the hyperlink
         ]);
 
         $slider = Slider::findOrFail(decrypt($id));
@@ -83,7 +79,7 @@ class SliderController extends Controller
             $slider->thumbnail_img = '/public/storage/' . $filePath; // Fixed path
         }
 
-        $slider->hyperlink = $request->input('hyperlink'); // Update the hyperlink
+
 
         $slider->save(); // Save the updated model
         Artisan::call('cache:clear');

@@ -6,11 +6,10 @@
         <h5>Edit Subcategory</h5>
     </div>
     <div class="card-body">
-        <form action="{{ route('categories.subcategories.update', ['category' => $category->id, ]) }}" method="POST">
-            @csrf
+        <form action="{{ route('categories.subcategories.update', ['category' => encrypt($category->id), 'subcategory' => encrypt($subcategory->id)]) }}" method="POST">
 
-
-            <div class="form-group">
+@csrf
+ <div class="form-group">
                 <label for="category_name">{{ __('Main Category:') }}</label>
                 <input type="text" class="form-control" id="category_name" value="{{ $category->name }}" disabled>
             </div>

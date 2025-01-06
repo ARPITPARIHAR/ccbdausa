@@ -143,7 +143,8 @@ Route::controller(CategoryController::class)->group(function () {
        Route::post('{category}/subcategories', 'storeSubcategory')->name('subcategories.store');
 
        Route::get('/categories/{category}/subcategories/{subcategory}/edit', 'editSubcategory')->name('subcategories.edit');
-       Route::post('{category}/subcategories/{subcategory}', 'updateSubcategory')->name('subcategories.update');
+       Route::post('categories/{category}/subcategories/{subcategory}', 'updateSubcategory')->name('subcategories.update');
+
        Route::get('{category}/subcategories/{subcategory}/delete', 'destroySubcategory')->name('subcategories.destroy');
     });
 });

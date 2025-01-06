@@ -54,10 +54,9 @@
                                     </a>
                                 </td>
 
-
-                                <td>
-                                    <a href="{{ route('categories.subcategories', $category->id) }}" class="btn btn-sm btn-info">{{ __('View Sub Categories') }}</a>
-                                </td>
+<td>
+                                <a href="{{ route('categories.subcategories', $category->id) }}" class="btn btn-sm btn-info">{{ __('View Sub Categories') }}</a>
+                            </td>
                             </tr>
                             @empty
                             <tr>

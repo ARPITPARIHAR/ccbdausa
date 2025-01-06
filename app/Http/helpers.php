@@ -11,5 +11,12 @@ if (!function_exists('businessSetting')) {
         });
     }
 }
-
+if (!function_exists('areActiveRoutes')) {
+    function areActiveRoutes(array $routes, $output = "active")
+    {
+        foreach ($routes as $route) {
+            if (request()->route()->getName() == $route) return $output;
+        }
+    }
+}
 // Additional helper functions...

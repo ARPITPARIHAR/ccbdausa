@@ -1,61 +1,60 @@
 <footer>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
-				<div class="ftr_box frst">
-					<div class="ftr_logo"><img src="images/logo.png" alt="logo"></div>
-					<span>Visitors 18061</span>
-					<p>Add:  {{ businessSetting(1)->address }}</p>
-					<p>Call: {{ businessSetting(1)->contact_numbers }}</p>
-					<p> Email: {{ businessSetting(1)->email }}</p>
-
-
+			<div class="col-xl-4 col-lg-12 col-md-12">
+				<div class="ftr_abt">
+					<img src="images/ftr_logo.png" alt="ftr_logo">
+					<p>{{businessSetting(1)->brief_description}}</p>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="ftr_box">
-					<h4>Online Platform</h4>
+			<div class="col-xl-4 col-lg-6 col-md-12">
+				<div class="links">
+					<h3>Quick Links</h3>
 					<ul>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Courses</a></li>
-						<li><a href="#">Instructor</a></li>
-						<li><a href="#">Events</a></li>
-						<li><a href="#">Instructor Profile</a></li>
-						<li><a href="#">Purchase Guide</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> About Us</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> Services</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> Branches</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> Policies & Guidelines</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> Photo Gallery</a></li>
+						<li><a href="#"><img src="images/arow.png" alt="arow"> Contact Us</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="ftr_box">
-					<h4>Links</h4>
-					<ul>
-						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Gallery</a></li>
-						<li><a href="#">News & Articles</a></li>
-						<li><a href="#">FAQ's</a></li>
-						<li><a href="#">Sign In/Registration</a></li>
-						<li><a href="#">Coming Soon</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="ftr_box">
-					<h4>Contacts</h4>
-					<p>Enter your email address to register to our newslatter subscription</p>
-					<form method="post" action="">
-						<input type="email" name="email" value="" placeholder="Email">
-						<button type="submit" class="button">Subscribe</button>
-					</form>
-					<ul class="ftr_scl">
-						<li><a href="#"><img src="images/scl001.png" alt="scl"></a></li>
-						<li><a href="#"><img src="images/scl002.png" alt="scl"></a></li>
-						<li><a href="#"><img src="images/scl003.png" alt="scl"></a></li>
-						<li><a href="#"><img src="images/scl004.png" alt="scl"></a></li>
-						<li><a href="#"><img src="images/scl005.png" alt="scl"></a></li>
-					<ul>
+			<div class="col-xl-4 col-lg-6 col-md-12">
+				<div class="cntct">
+					<h3>Get in Touch</h3>
+					<div class="adrs">
+						<div class="adrs_box">
+							<div class="adrs_inr">
+								<div class="adrs_icn"><img src="images/adrs01.png" alt="adrs"></div>
+							</div>
+							<p>
+
+
+
+								<a href="tel:+91-1427-294181">{{ businessSetting(1)->contact_numbers ?? 'Not Available' }}</a>
+							</p>
+						</div>
+						<div class="adrs_box">
+							<div class="adrs_inr">
+								<div class="adrs_icn"><img src="images/adrs02.png" alt="adrs"></div>
+							</div>
+							<p>
+								<a href="mailto:dccb.dausa@rajasthan.gov.in">{{businessSetting(1)->email}}</a>
+							</p>
+						</div>
+						<div class="adrs_box">
+							<div class="adrs_inr">
+								<div class="adrs_icn"><img src="images/adrs03.png" alt="adrs"></div>
+							</div>
+							<p>{{businessSetting(1)->address}}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </footer>
-<div class="copyright">Copyright © 2024 <a href="#">RICEM</a>. All Rights Reserved</div>
+<div class="copyright">
+	<p>Copyright © 2024 The Dausa Central Co-Oprative Bank - All rights reserved. </p>
+</div>

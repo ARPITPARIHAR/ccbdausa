@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
-@section('meta_title','rcem')
-@include('frontend.includes.navbar')
+@section('meta_title','Training Programs | '.env('APP_NAME'))
+@section('meta_description','Training Programs | '.env('APP_NAME'))
+@section('content')
 
 <section class="rlvng_ordrs">
 	<div class="container">
@@ -22,128 +23,43 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Search</label>
-									<input class="form-control" type="search" name="" placeholder="Search">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Search</label>
+                                    <form action="{{ route('training.search') }}" method="GET">
+                                        <input class="form-control" type="search" name="search" placeholder="Search" value="{{ request()->query('search') }}">
+                                    </form>
+                                </div>
+                            </div>
+
 
 				<div class="ordr_list">
-					<h4>Training & Programs</h4>
-					<div class="table-responsive">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-								  <th>S.No.</th>
-								  <th>Details</th>
-								  <th>View</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								  <td>1</td>
-								  <td>Banking</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>2</td>
-								  <td>Processing</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>3</td>
-								  <td>Audit</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>4</td>
-								  <td>Planning</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>5</td>
-								  <td>Publicity</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>6</td>
-								  <td>Elections</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>7</td>
-								  <td>Housing</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>8</td>
-								  <td>Rules</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>9</td>
-								  <td>RSVVN</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>10</td>
-								  <td>Consumer & Marketing</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>11</td>
-								  <td>Administration/HRD</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>12</td>
-								  <td>ICDP</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>13</td>
-								  <td>Budget</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>14</td>
-								  <td>Women Cell</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>15</td>
-								  <td>Tenders</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>16</td>
-								  <td>Miscellaneous</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>17</td>
-								  <td>Training</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								</tr>
-								<tr>
-								  <td>18</td>
-								  <td>TA</td>
-								<td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								<tr>
-								  <td>19</td>
-								  <td>Legal</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-								<tr>
-								  <td>20</td>
-								  <td>Other Order</td>
-								  <td><a href="#"><img src="images/view.png" alt="view"></a></td>
-							</tbody>
-						</table>
-					</div></div>
+                    <h4>Training & Programs</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Title</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (\App\Models\Trainingevent::where('category_id',0)->get() as $key => $category)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $category->title }}</td>
+                                        <td>
+                                            <a href="{{ route('training.show', ['id' => $category->id]) }}">
+                                                <img src="{{ asset('images/view.png') }}" alt="view">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
 			</div>
 
@@ -153,7 +69,7 @@
 
 
 
-@include('frontend.includes.footer')
+@endsection
 
 @section('style')
 

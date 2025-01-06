@@ -16,6 +16,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::paginate(15);
+
         return view('backend.banner.index', compact('banners'));
     }
 
@@ -33,11 +34,14 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string',
+           // Validate the hyperlink
+            'logo' => 'required|image|mimes:pdf|max:2048',
         ]);
         $banners = new Banner;
+        $banners->title = $request->title;
 
+      // Save the hyperlink
         if ($request->hasFile('logo')) {
             $fileName = time() . '-logo-' . $request->file('logo')->getClientOriginalName();
             $filePath = $request->file('logo')->storeAs('uploads/banners', $fileName, 'public');
@@ -62,8 +66,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        $banners= Banner::findOrFail(decrypt($id));
-        return view('backend.banner.edit', compact('banners'));
+        $banner = Banner::findOrFail(decrypt($id));
+        return view('backend.banner.edit', compact('banner'));
     }
 
     /**
@@ -72,11 +76,13 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string',
+           // Validate the hyperlink
+            'logo' => 'nullable|image|mimes:pdf|max:2048',
         ]);
-        $banners= Banner::findOrFail(decrypt($id));
-
+        $banners = Banner::findOrFail(decrypt($id));
+        $banners->title = $request->title;
+ // Save the hyperlink
         if ($request->hasFile('logo')) {
             $fileName = time() . '-logo-' . $request->file('logo')->getClientOriginalName();
             $filePath = $request->file('logo')->storeAs('uploads/banners', $fileName, 'public');
@@ -84,7 +90,7 @@ class BannerController extends Controller
         }
         $banners->save();
         Artisan::call('cache:clear');
-        return back()->with('success', 'Banner  update successfully.');
+        return back()->with('success', 'Banner update successfully.');
     }
 
     /**

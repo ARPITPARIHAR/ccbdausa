@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
-@section('meta_title',__('Add Banner'))
+@section('meta_title',__('Banners'))
 
-@section('page_name',__('Add Banner'))
+@section('page_name',__('Add Pdf'))
 
-@section('page_description',__('Add Banner'))
+@section('page_description',__('Add Pdf'))
 @section('name')
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}"> <i class="feather icon-home"></i> </a>
     </li>
-    <li class="breadcrumb-item"><a href="#!">{{ __('Add Banner') }}</a>
+    <li class="breadcrumb-item"><a href="#!">{{ __('Add Pdf') }}</a>
     </li>
 @endsection
 @section('content')
@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header row">
                 <div class="col-sm-2">
-                    <a href="{{ route('banner.create') }}" class="btn btn-sm btn-primary">{{ __('Add Banner') }}</a>
+                    <a href="{{ route('banner.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pdf') }}</a>
                 </div>
             </div>
             <div class="card-block">
@@ -27,8 +27,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-
-                                <th>{{ __('Banner') }}</th>
+                                <th>{{ __('Title') }}</th>
+                                <th>{{ __('Pdf') }}</th>
 
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
@@ -38,9 +38,9 @@
                             @foreach ($banners as $key=>$banner)
                             <tr>
                                 <td>{{ ($key+1) + ($banners->currentPage() - 1)*$banners->perPage() }}</td>
-                                <td><img src="{{ asset($banner->thumbnail_img) }}" width="90"></td>
-                                
+                                <td>{{ $banner->title }}</td>
 
+                                <td><img src="{{ asset($banner->thumbnail_img) }}" width="90"></td>
                                 <td>{{ date('d-m-Y h:iA',strtotime($banner->updated_at)) }}</td>
                                 <td>
                                     <a href="{{ route('banner.edit',encrypt($banner->id)) }}" class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
@@ -52,9 +52,9 @@
                         <tfoot>
                             <tr>
                                 <th>#</th>
+                                <th>{{ __('Title') }}</th>
 
-                                <th>{{ __('Baneer') }}</th>
-
+                             <th>{{ __('pdf') }}</th>
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
                             </tr>

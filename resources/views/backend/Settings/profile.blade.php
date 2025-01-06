@@ -6,7 +6,7 @@
 @section('page_description',__('Profile'))
 @section('name')
     <li class="breadcrumb-item">
-        <a href="{{ route('admin.dashboard') }}"> <i class="feather icon-home"></i> </a>
+        <a href="{{ route('dashboard') }}"> <i class="feather icon-home"></i> </a>
     </li>
     <li class="breadcrumb-item"><a href="#!">{{ __('Profile') }}</a>
     </li>
@@ -24,7 +24,7 @@
                @endsession
             </div>
             <div class="card-block">
-                <form action="{{ route('admin.profile.update') }}" method="POST">
+                <form action="{{ route('profile.update') }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>

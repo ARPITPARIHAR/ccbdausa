@@ -6,7 +6,7 @@
 
 @section('name')
     <li class="breadcrumb-item">
-        {{-- <a href="{{ route('admin.dashboard') }}"> <i class="feather icon-home"></i> </a> --}}
+        {{-- <a href="{{ route('dashboard') }}"> <i class="feather icon-home"></i> </a> --}}
     </li>
     <li class="breadcrumb-item"><a href="#!">{{ __('Business Info') }}</a>
     </li>
@@ -122,6 +122,39 @@
                             <div class="col-sm-10">
                                 <input type="text" name="linked_in" id="linked_in" value="{{ old('linked_in') ?? $business_info->linked_in }}" placeholder="{{ __('Enter Linked In') }}" class="form-control @error('linked_in') form-control-danger @enderror">
                                 @error('linked_in')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                    <p class="text-muted">{{ __('') }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">{{ __('Facebook') }}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="facebook" id="facebook" value="{{ old('facebook') ?? $business_info->facebook }}" placeholder="{{ __('Enter Linked In') }}" class="form-control @error('facebook') form-control-danger @enderror">
+                                @error('facebook')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                    <p class="text-muted">{{ __('') }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">{{ __('Twitter') }}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="twitter" id="twitter" value="{{ old('twitter') ?? $business_info->twitter }}" placeholder="{{ __('Enter Linked In') }}" class="form-control @error('twitter') form-control-danger @enderror">
+                                @error('twitter')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                    <p class="text-muted">{{ __('') }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">{{ __('Youtube') }}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="youtube" id="youtube" value="{{ old('youtube') ?? $business_info->youtube }}" placeholder="{{ __('Enter Linked In') }}" class="form-control @error('youtube') form-control-danger @enderror">
+                                @error('youtube')
                                     <p class="text-danger error">{{ $message }}</p>
                                 @else
                                     <p class="text-muted">{{ __('') }}</p>

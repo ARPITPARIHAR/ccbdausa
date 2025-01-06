@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
-@section('meta_title',__('Add Banner'))
+@section('meta_title',__('Add Pdf'))
 
-@section('page_name',__('Add Banner'))
+@section('page_name',__('Add Pdf'))
 
-@section('page_description',__('Add Banner'))
+@section('page_description',__('Add Pdf'))
 @section('name')
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}"> <i class="feather icon-home"></i> </a>
     </li>
-    <li class="breadcrumb-item"><a href="#!">{{ __('Add Banner') }}</a>
+    <li class="breadcrumb-item"><a href="#!">{{ __('Add Pdf') }}</a>
     </li>
 @endsection
 @section('content')
@@ -26,17 +26,31 @@
             <div class="card-block">
                 <form action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Title') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" id="title" value="{{ old('title')}}" placeholder="{{ __('Enter Page Title') }}" class="form-control @error('title') form-control-danger @enderror">
+                           <span class="messages">
+                                @error('title')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                  
+                                @enderror
+                            </span>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">{{ __('Banner') }}</label>
+                        <label class="col-sm-2 col-form-label">{{ __('Pdf') }}</label>
                         <div class="col-sm-10">
-                            <input type="file" name="logo" id="logo" class="form-control @error('logo') form-control-danger @enderror">
+                            <input type="file" name="logo" id="logo" class="form-control @error('logo') form-control-danger @enderror" accept=".pdf">
                             @error('logo')
                                 <p class="text-danger error">{{ $message }}</p>
                             @else
                                 <p class="text-muted">{{ __('') }}</p>
                             @enderror
                         </div>
+
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">

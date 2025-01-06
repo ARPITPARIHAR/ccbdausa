@@ -40,13 +40,52 @@
                         </div>
                     </div> --}}
                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">{{ __('News Description') }}</label>
+                        <label class="col-sm-2 col-form-label">{{ __('News Title') }}</label>
                         <div class="col-sm-10">
                             <textarea name="news_description" id="news_description" placeholder="{{ __('Enter News') }}" class="form-control @error('news_description') form-control-danger @enderror">{{ old('news_description')}}</textarea>
                             @error('news_description')
                                 <p class="text-danger error">{{ $message }}</p>
                             @else
                                 <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Newslink') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="hyperlink" id="hyperlink" value="{{ old('hyperlink')}}" placeholder="{{ __('Enter Hyperlink') }}" class="form-control @error('hyperlink') form-control-danger @enderror">
+                            @error('hyperlink')
+                            <p class="text-danger error">{{ $message }}</p>
+                            @else
+                            <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="date" id="date" value="{{ old('date') }}" class="form-control @error('date') form-control-danger @enderror">
+                            @error('date')
+                            <p class="text-danger error">{{ $message }}</p>
+                            @else
+                            <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Status Column -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Status') }}</label>
+                        <div class="col-sm-10">
+                            <select name="status" id="status" class="form-control @error('status') form-control-danger @enderror">
+                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
+                            </select>
+                            @error('status')
+                            <p class="text-danger error">{{ $message }}</p>
+                            @else
+                            <p class="text-muted">{{ __('') }}</p>
                             @enderror
                         </div>
                     </div>

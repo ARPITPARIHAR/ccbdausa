@@ -168,15 +168,24 @@ class CategoryController extends Controller
             'page_link' => 'nullable|url',
         ]);
 
+        // Decrypt the categoryId and subcategoryId
+        $categoryId = decrypt($categoryId);
+        $subcategoryId = decrypt($subcategoryId);
+
+        // Find the subcategory
         $subcategory = SubCategory::findOrFail($subcategoryId);
+
+        // Update the subcategory fields
         $subcategory->name = $request->name;
         $subcategory->serial_no = $request->serial_no;
         $subcategory->active = $request->active;
         $subcategory->page_link = $request->page_link;
-        $subcategory->category_id = $categoryId;
+        $subcategory->category_id = $categoryId; // Use the decrypted value
         $subcategory->save();
 
-        return redirect()->route('categories.subcategories', $categoryId)->with('success', 'Subcategory updated successfully');
+        // Redirect with a success message
+        return redirect()->route('categories.subcategories', encrypt($categoryId))
+                         ->with('success', 'Subcategory updated successfully');
     }
     public function destroySubcategory($categoryId, $subcategoryId)
     {
@@ -187,10 +196,14 @@ class CategoryController extends Controller
         // Delete the subcategory
         $subcategory->delete();
 
-        // Redirect with success message
-        return redirect()->route('categories.subcategories', ['category' => $category->id])
-                         ->with('success', 'Subcategory deleted successfully');
+        // Redirect back to the subcategory edit route with encrypted categoryId and subcategoryId
+        return redirect()->route('categories.subcategories.edit', [
+            'category' => encrypt($category->id),
+            'subcategory' => encrypt($subcategory->id)
+        ])
+        ->with('success', 'Subcategory deleted successfully');
     }
 
-  
+
+
 }

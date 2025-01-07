@@ -7,8 +7,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('categories.subcategories.update', ['category' => encrypt($category->id), 'subcategory' => encrypt($subcategory->id)]) }}" method="POST">
+           
+                @csrf
 
-@csrf
+
  <div class="form-group">
                 <label for="category_name">{{ __('Main Category:') }}</label>
                 <input type="text" class="form-control" id="category_name" value="{{ $category->name }}" disabled>
